@@ -1,0 +1,683 @@
+/* ==============================
+   Number Trainer Styles
+   ============================== */
+
+/* Override container for trainer - give it room to breathe */
+.container {
+    max-width: 720px;
+}
+
+.trainer-header {
+    padding: 40px 0 16px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: #00e5c7;
+}
+
+.trainer-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.trainer-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #00e5c7, #54a0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.score-display {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.6rem;
+    font-weight: 600;
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+}
+
+.score-correct {
+    color: #00e5c7;
+}
+
+.score-sep {
+    color: var(--text-muted);
+}
+
+.score-total {
+    color: var(--text-secondary);
+}
+
+/* Subtopic bar */
+.subtopic-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 16px 0 32px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.1s forwards;
+}
+
+.subtopic-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.subtopic-btn:hover {
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+    background: var(--bg-card);
+}
+
+.subtopic-btn.active {
+    background: #00e5c7;
+    border-color: #00e5c7;
+    color: #0a0a0f;
+}
+
+/* Question card */
+.question-area {
+    padding-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.2s forwards;
+}
+
+.question-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+}
+
+.question-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00e5c7, #54a0ff);
+}
+
+.question-type {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #00e5c7;
+    margin-bottom: 24px;
+}
+
+.question-text {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    min-height: 60px;
+    color: var(--text-primary);
+}
+
+.question-text small {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.55em;
+}
+
+.question-text .math {
+    font-family: 'JetBrains Mono', monospace;
+    color: #fff;
+    background: rgba(0, 229, 199, 0.1);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 600;
+    border: 1px solid rgba(0, 229, 199, 0.15);
+    display: inline-block;
+    margin: 2px 0;
+}
+
+/* Stacked fractions */
+.frac {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 0.85em;
+    line-height: 1.2;
+}
+
+.frac-num, .frac-den {
+    padding: 2px 8px;
+}
+
+.frac-num {
+    border-bottom: 2px solid rgba(0, 229, 199, 0.5);
+}
+
+.question-text .op {
+    display: inline-block;
+    margin: 0 8px;
+    font-size: 1.1em;
+    vertical-align: middle;
+    color: var(--text-secondary);
+}
+
+.answer-section {
+    display: flex;
+    gap: 12px;
+}
+
+.answer-input {
+    flex: 1;
+    font-size: 1.4rem;
+    padding: 12px 18px;
+    background: var(--bg-surface);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s ease;
+    --hue: 170;
+    --caret-color: #00e5c7;
+    --selection-background-color: rgba(0, 229, 199, 0.18);
+    --placeholder-color: var(--text-muted);
+    --smart-fence-color: var(--text-primary);
+    --text-font-family: 'JetBrains Mono', monospace;
+    --keyboard-zindex: 1001;
+}
+
+math-field {
+    background: var(--bg-surface) !important;
+    color: var(--text-primary) !important;
+    --contains-highlight-background-color: transparent;
+}
+
+math-field::part(container) {
+    background: var(--bg-surface);
+}
+
+math-field::part(content) {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+}
+
+.answer-input:focus-within {
+    border-color: #00e5c7;
+    box-shadow: 0 0 0 3px rgba(0, 229, 199, 0.1);
+}
+
+.submit-btn {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 16px 36px;
+    background: #00e5c7;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: #0a0a0f;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+    background: #00ccb0;
+    transform: translateY(-1px);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Feedback */
+.feedback {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    min-height: 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.feedback.correct {
+    color: #00e5c7;
+}
+
+.feedback.incorrect {
+    color: #ff6b6b;
+}
+
+.feedback .answer-reveal {
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(255, 107, 107, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.feedback .explain-box {
+    display: block;
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.feedback.correct .explain-box {
+    border-color: rgba(0, 229, 199, 0.15);
+    background: rgba(0, 229, 199, 0.03);
+}
+
+.feedback.incorrect .explain-box {
+    border-color: rgba(255, 107, 107, 0.15);
+    background: rgba(255, 107, 107, 0.03);
+}
+
+.feedback .next-hint {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Streak */
+.streak-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0 60px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.3s forwards;
+}
+
+.streak-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.streak-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: all 0.3s ease;
+}
+
+.streak-dot.hit {
+    background: #00e5c7;
+    box-shadow: 0 0 8px rgba(0, 229, 199, 0.4);
+}
+
+.streak-dot.miss {
+    background: #ff6b6b;
+}
+
+.streak-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* ==============================
+   Calculator (Desmos)
+   ============================== */
+
+.calc-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1000;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #00e5c7;
+    color: #0a0a0f;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 229, 199, 0.3);
+}
+
+.calc-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 28px rgba(0, 229, 199, 0.4);
+}
+
+.calc-btn.active {
+    background: #ff6b6b;
+    box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+}
+
+.calc-modal {
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    right: 24px;
+    z-index: 999;
+    width: 380px;
+    height: 500px;
+    min-width: 280px;
+    min-height: 300px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.calc-modal.show {
+    display: flex;
+}
+
+.calc-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, #00e5c7, #00b3a0);
+    color: #0a0a0f;
+    cursor: grab;
+    user-select: none;
+    flex-shrink: 0;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.calc-titlebar:active {
+    cursor: grabbing;
+}
+
+.calc-titlebar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.calc-deg-btn {
+    padding: 2px 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 4px;
+    border: 1.5px solid rgba(10, 10, 15, 0.3);
+    background: transparent;
+    color: #0a0a0f;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.calc-deg-btn:hover {
+    background: rgba(10, 10, 15, 0.1);
+}
+
+.calc-deg-btn.rad-mode {
+    background: rgba(10, 10, 15, 0.2);
+    border-color: #0a0a0f;
+}
+
+.calc-close-btn {
+    background: none;
+    border: none;
+    color: #0a0a0f;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.calc-close-btn:hover {
+    opacity: 1;
+}
+
+.calc-container {
+    flex: 1;
+    min-height: 0;
+}
+
+.calc-resize-handle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 18px;
+    height: 18px;
+    cursor: nwse-resize;
+    z-index: 2;
+    background: linear-gradient(135deg, transparent 50%, rgba(0, 229, 199, 0.2) 50%);
+    border-radius: 0 0 var(--radius-md) 0;
+}
+
+/* Keyboard hints */
+.kb-hints {
+    margin-top: 20px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+}
+
+.kb-hints summary {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+}
+
+.kb-hints summary::before {
+    content: '? ';
+}
+
+.kb-hints[open] summary {
+    margin-bottom: 12px;
+}
+
+.kb-hints-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.kb-hint {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.kb-hint kbd {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: #00e5c7;
+    margin-right: 4px;
+}
+
+/* Working out */
+.workout-section {
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.25s forwards;
+}
+
+.workout-section summary {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+    user-select: none;
+    padding: 8px 0;
+}
+
+.workout-section[open] summary {
+    margin-bottom: 8px;
+}
+
+.workout-content {
+    width: 100%;
+    min-height: 120px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    padding: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s ease;
+    line-height: 1.6;
+}
+
+.workout-content:focus {
+    border-color: #00e5c7;
+}
+
+.workout-content:empty::before {
+    content: 'Show your working here...';
+    color: var(--text-muted);
+}
+
+.copy-calc-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-calc-btn:hover {
+    color: #00e5c7;
+    border-color: #00e5c7;
+}
+
+/* Hints */
+.hint-section {
+    margin-top: 16px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+}
+
+.hint-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.hint-btn:hover {
+    color: #feca57;
+    border-color: #feca57;
+}
+
+.hint-btn.used {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.hint-text {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    display: none;
+}
+
+.hint-text.show {
+    display: block;
+}
+
+/* Shake animation for wrong answers */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+}
+
+.shake {
+    animation: shake 0.4s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .question-card {
+        padding: 28px 20px;
+    }
+
+    .question-text {
+        font-size: 1.1rem;
+    }
+
+    .answer-section {
+        flex-direction: column;
+    }
+
+    .subtopic-bar {
+        gap: 6px;
+    }
+
+    .calc-modal {
+        width: calc(100vw - 32px);
+        right: 16px;
+        bottom: 80px;
+    }
+}
