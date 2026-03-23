@@ -181,6 +181,25 @@ a {
     border-color: var(--border-hover);
 }
 
+/* Back link */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    padding: 6px 0;
+    transition: color 0.2s ease;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+}
+
+.back-link:hover {
+    color: #00e5c7;
+}
+
 /* ==============================
    Layout
    ============================== */
