@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number - GCSE Hub</title>
+    <title>Coordinate Geometry - GCSE Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../styles.css">
-    <link rel="stylesheet" href="number.css">
+    <link rel="stylesheet" href="trainer.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script type="module">import 'https://unpkg.com/mathlive@0.101.0?module';</script>
@@ -21,8 +21,9 @@
             <span class="brand-mark">//</span> GCSE Hub
         </a>
         <div class="nav-links">
-            <a href="../../" class="nav-link">AQA</a>
-            <a href="../" class="nav-link">Maths</a>
+            <a href="../../../" class="nav-link">Boards</a>
+            <a href="../../" class="nav-link">Edexcel iGCSE</a>
+            <a href="../" class="nav-link">FPM</a>
         </div>
         <div class="nav-auth">
             <span id="auth-info"></span>
@@ -32,11 +33,11 @@
 
     <main class="container">
         <header class="trainer-header">
-            <a href="../" class="back-link">&larr; Maths</a>
+            <a href="../" class="back-link">&larr; Further Pure Maths</a>
             <div class="trainer-title-row">
                 <div>
-                    <p class="hero-tag">Topic 01</p>
-                    <h1 class="trainer-title">Number</h1>
+                    <p class="hero-tag">Topic 08</p>
+                    <h1 class="trainer-title">Coordinate Geometry</h1>
                 </div>
                 <div class="score-display">
                     <span class="score-correct" id="score-correct">0</span>
@@ -49,13 +50,11 @@
         <!-- Subtopic selector -->
         <div class="subtopic-bar" id="subtopic-bar">
             <button class="subtopic-btn active" data-topic="all">All</button>
-            <button class="subtopic-btn" data-topic="hcf-lcm">HCF & LCM</button>
-            <button class="subtopic-btn" data-topic="fractions">Fractions</button>
-            <button class="subtopic-btn" data-topic="percentages">Percentages</button>
-            <button class="subtopic-btn" data-topic="indices">Indices</button>
-            <button class="subtopic-btn" data-topic="surds">Surds</button>
-            <button class="subtopic-btn" data-topic="standard-form">Standard Form</button>
-            <button class="subtopic-btn" data-topic="bounds">Bounds</button>
+            <button class="subtopic-btn" data-topic="distance-midpoint">Distance & Midpoint</button>
+            <button class="subtopic-btn" data-topic="gradient-lines">Gradient & Lines</button>
+            <button class="subtopic-btn" data-topic="parallel-perp">Parallel & Perpendicular</button>
+            <button class="subtopic-btn" data-topic="circles">Equation of Circle</button>
+            <button class="subtopic-btn" data-topic="tangents">Tangents & Normals</button>
         </div>
 
         <!-- Question area -->
@@ -133,7 +132,7 @@
     <script src="../../../js/tracker.js"></script>
     <script src="../../../js/auth.js"></script>
     <script src="https://www.desmos.com/api/v1.9/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
-    <script src="number.js"></script>
+    <script src="coordinate-geometry.js"></script>
     <script src="../../../js/calculator.js"></script>
     <script>Auth.init();</script>
 </body>

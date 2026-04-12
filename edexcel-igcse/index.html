@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edexcel iGCSE - GCSE Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="grain"></div>
+    <div class="geo geo-1"></div>
+    <div class="geo geo-2"></div>
+    <div class="geo geo-3"></div>
+
+    <nav class="nav">
+        <a href="../" class="nav-brand">
+            <span class="brand-mark">//</span> GCSE Hub
+        </a>
+        <div class="nav-links">
+            <a href="../" class="nav-link">Boards</a>
+            <a href="./" class="nav-link active">Edexcel iGCSE</a>
+            <a href="#" class="nav-link">Progress</a>
+        </div>
+        <div class="nav-auth">
+            <span id="auth-info"></span>
+            <button class="auth-btn" id="auth-btn">Sign in</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="hero">
+            <a href="../" class="back-link">&larr; All Boards</a>
+            <p class="hero-tag">Edexcel iGCSE</p>
+            <h1 class="hero-title">Edexcel iGCSE<br><span class="hero-accent">subjects.</span></h1>
+            <p class="hero-sub">Trainers, practice papers, and revision tools for Edexcel international GCSEs.</p>
+        </header>
+
+        <section class="subjects">
+            <h2 class="section-title">Subjects</h2>
+            <div class="card-grid">
+                <!-- Further Pure Mathematics - Active -->
+                <a href="further-pure-maths/" class="subject-card active" style="--accent: #54a0ff; --accent-dim: #54a0ff20;">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="2" x2="12" y2="22"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Further Pure Mathematics</h3>
+                        <p class="card-desc">Edexcel 4PM1</p>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-count">10 topics</span>
+                        <span class="card-arrow">&rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Mathematics - Coming Soon -->
+                <div class="subject-card locked" style="--accent: #00e5c7; --accent-dim: #00e5c720;">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Mathematics</h3>
+                        <p class="card-desc">Edexcel 4MA1</p>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-badge">Coming Soon</span>
+                    </div>
+                </div>
+
+                <!-- Science Double Award - Coming Soon -->
+                <div class="subject-card locked" style="--accent: #ff9f43; --accent-dim: #ff9f4320;">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"></path>
+                            <path d="M8.5 2h7"></path>
+                        </svg>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Science Double Award</h3>
+                        <p class="card-desc">Edexcel 4SD0</p>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-badge">Coming Soon</span>
+                    </div>
+                </div>
+
+                <!-- English Language A - Coming Soon -->
+                <div class="subject-card locked" style="--accent: #f368e0; --accent-dim: #f368e020;">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">English Language A</h3>
+                        <p class="card-desc">Edexcel 4EA1</p>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-badge">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 GCSE Hub. Not affiliated with Pearson Edexcel.</p>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/tracker.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/app.js"></script>
+    <script>Auth.init();</script>
+</body>
+</html>

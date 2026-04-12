@@ -1,13 +1,13 @@
 /* ==============================
-   Maths Section Styles
+   Further Pure Maths Section Styles
    ============================== */
 
 .geo-1 {
-    background: #00e5c7;
+    background: #54a0ff;
 }
 
 .geo-2 {
-    background: #54a0ff;
+    background: #a29bfe;
 }
 
 /* Hero */
@@ -30,7 +30,7 @@
 }
 
 .back-link:hover {
-    color: #00e5c7;
+    color: #54a0ff;
 }
 
 .maths-hero-content {
@@ -51,7 +51,7 @@
     font-size: clamp(2rem, 5vw, 3.2rem);
     animation: none;
     opacity: 1;
-    background: linear-gradient(135deg, #00e5c7, #54a0ff);
+    background: linear-gradient(135deg, #54a0ff, #a29bfe);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -102,33 +102,43 @@
 .topic-grid {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
 }
 
-.topic-card {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    padding: 24px 28px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
+/* Topic Section (expandable) */
+.topic-section {
     opacity: 0;
     animation: fadeUp 0.5s ease forwards;
     animation-delay: calc(0.3s + var(--index, 0) * 0.06s);
 }
 
-.topic-card[data-index="0"] { --index: 0; }
-.topic-card[data-index="1"] { --index: 1; }
-.topic-card[data-index="2"] { --index: 2; }
-.topic-card[data-index="3"] { --index: 3; }
-.topic-card[data-index="4"] { --index: 4; }
-.topic-card[data-index="5"] { --index: 5; }
+.topic-section[data-index="0"] { --index: 0; }
+.topic-section[data-index="1"] { --index: 1; }
+.topic-section[data-index="2"] { --index: 2; }
+.topic-section[data-index="3"] { --index: 3; }
+.topic-section[data-index="4"] { --index: 4; }
+.topic-section[data-index="5"] { --index: 5; }
+.topic-section[data-index="6"] { --index: 6; }
+.topic-section[data-index="7"] { --index: 7; }
+.topic-section[data-index="8"] { --index: 8; }
+.topic-section[data-index="9"] { --index: 9; }
 
-.topic-card::before {
+.topic-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 20px 28px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+}
+
+.topic-header::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -137,15 +147,19 @@
     transition: opacity 0.3s ease;
 }
 
-.topic-card:hover {
+.topic-header:hover {
     border-color: var(--topic-accent);
     background: var(--bg-card-hover);
-    transform: translateX(4px);
-    box-shadow: -4px 0 24px var(--topic-dim);
 }
 
-.topic-card:hover::before {
+.topic-header:hover::before {
     opacity: 1;
+}
+
+.topic-section.open .topic-header {
+    border-color: var(--topic-accent);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .topic-number {
@@ -180,43 +194,98 @@
     line-height: 1.5;
 }
 
-.topic-footer {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-shrink: 0;
+.topic-toggle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    transition: transform 0.3s ease;
     position: relative;
     z-index: 1;
+    flex-shrink: 0;
 }
 
-.topic-progress {
-    width: 80px;
+.topic-section.open .topic-toggle {
+    transform: rotate(180deg);
 }
 
-.progress-bar {
-    width: 100%;
-    height: 4px;
-    background: var(--border);
-    border-radius: 2px;
+/* Activities panel (hidden by default) */
+.topic-activities {
+    max-height: 0;
     overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-bottom-left-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
 }
 
-.progress-fill {
-    height: 100%;
-    background: var(--topic-accent);
-    border-radius: 2px;
-    transition: width 0.4s ease;
+.topic-section.open .topic-activities {
+    max-height: 600px;
 }
 
-.topic-arrow {
-    font-size: 1.1rem;
-    color: var(--topic-accent);
+/* Activity cards (trainer + lessons) */
+.activity-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 28px 14px 56px;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.activity-card:last-child {
+    border-bottom: none;
+}
+
+.activity-card:hover {
+    background: rgba(255,255,255,0.02);
+    padding-left: 60px;
+}
+
+.activity-icon {
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
+}
+
+.trainer-card .activity-icon {
+    color: #00e5c7;
+}
+
+.lesson-card .activity-icon {
+    color: #feca57;
+}
+
+.activity-title {
+    flex: 1;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.trainer-card .activity-title {
+    font-weight: 700;
+    color: #00e5c7;
+}
+
+.activity-meta {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    flex-shrink: 0;
+}
+
+.activity-arrow {
+    font-size: 0.85rem;
+    color: var(--text-muted);
     opacity: 0;
-    transform: translateX(-8px);
-    transition: all 0.3s ease;
+    transform: translateX(-4px);
+    transition: all 0.2s ease;
 }
 
-.topic-card:hover .topic-arrow {
+.activity-card:hover .activity-arrow {
     opacity: 1;
     transform: translateX(0);
 }
@@ -232,22 +301,25 @@
         gap: 24px;
     }
 
-    .topic-card {
+    .topic-header {
         flex-wrap: wrap;
         gap: 12px;
-        padding: 20px;
+        padding: 16px 20px;
     }
 
     .topic-number {
         width: auto;
     }
 
-    .topic-footer {
-        width: 100%;
-        justify-content: space-between;
+    .activity-card {
+        padding-left: 36px;
     }
 
-    .topic-progress {
-        flex: 1;
+    .activity-card:hover {
+        padding-left: 40px;
+    }
+
+    .activity-meta {
+        display: none;
     }
 }

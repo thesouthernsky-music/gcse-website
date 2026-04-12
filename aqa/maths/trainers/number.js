@@ -96,13 +96,14 @@ function sqrt(n) {
 function parseLatex(raw) {
     let s = raw.replace(/\\left|\\right/g, '').replace(/\s+/g, '').trim();
 
-    // First pass: normalize LaTeX to readable form
-    // \sqrt{n} -> sqrt(n)
+    // Normalize sqrt FIRST (before frac extraction)
     s = s.replace(/\\sqrt\{([^}]+)\}/g, 'sqrt($1)');
+    s = s.replace(/\\sqrt(\d)/g, 'sqrt($1)'); // \sqrt2 shorthand
+
     // \times, \cdot -> x
     s = s.replace(/\\times/g, 'x').replace(/\\cdot/g, 'x');
 
-    // \frac{...}{...} -> .../...  (handles sqrt, numbers, expressions)
+    // \frac{...}{...} -> .../...
     const fm = s.match(/(-?)\\[cdt]?frac\{([^}]+)\}\{([^}]+)\}/);
     if (fm) {
         const sign = fm[1] === '-' ? '-' : '';
@@ -132,7 +133,7 @@ function parseLatex(raw) {
     s = s.replace(/\{(-?[\d.]+)\}/g, '$1');
     s = s.replace(/\{/g, '').replace(/\}/g, '');
 
-    // a\sqrt -> asqrt
+    // a\sqrt -> asqrt (fallback for any remaining)
     s = s.replace(/(\d+)\\sqrt/g, '$1sqrt');
 
     // Clean up remaining backslashes
@@ -472,19 +473,25 @@ const generators = {
     'surds': [
         function simplifySurd() {
             const pairs = [
-                [8, '2sqrt(2)'], [12, '2sqrt(3)'], [18, '3sqrt(2)'],
-                [20, '2sqrt(5)'], [24, '2sqrt(6)'], [27, '3sqrt(3)'],
-                [28, '2sqrt(7)'], [32, '4sqrt(2)'], [45, '3sqrt(5)'],
-                [48, '4sqrt(3)'], [50, '5sqrt(2)'], [54, '3sqrt(6)'],
-                [63, '3sqrt(7)'], [72, '6sqrt(2)'], [75, '5sqrt(3)'],
-                [80, '4sqrt(5)'], [98, '7sqrt(2)'], [125, '5sqrt(5)'],
-                [128, '8sqrt(2)'], [147, '7sqrt(3)'], [200, '10sqrt(2)']
+                [8, 2, 2], [12, 2, 3], [18, 3, 2],
+                [20, 2, 5], [24, 2, 6], [27, 3, 3],
+                [28, 2, 7], [32, 4, 2], [45, 3, 5],
+                [48, 4, 3], [50, 5, 2], [54, 3, 6],
+                [63, 3, 7], [72, 6, 2], [75, 5, 3],
+                [80, 4, 5], [98, 7, 2], [125, 5, 5],
+                [128, 8, 2], [147, 7, 3], [200, 10, 2]
             ];
-            const [n, answer] = pick(pairs);
+            const [n, coeff, rad] = pick(pairs);
+            const answer = `${coeff}sqrt(${rad})`;
             return {
                 type: 'Surds',
                 text: `Simplify ${sqrt(n)}`,
-                answer: answer
+                answer: answer,
+                accept: [
+                    `${coeff} sqrt(${rad})`,
+                    `${coeff}xsqrt(${rad})`,
+                    `${coeff} x sqrt(${rad})`
+                ]
             };
         },
         function multiplySurds() {
@@ -499,10 +506,24 @@ const generators = {
                     answer: String(sqrtProduct)
                 };
             }
+            // Check if result can be simplified (e.g. sqrt(12) = 2sqrt(3))
+            let simplified = null;
+            for (let i = Math.floor(Math.sqrt(product)); i >= 2; i--) {
+                if (product % (i * i) === 0) {
+                    const rem = product / (i * i);
+                    simplified = `${i}sqrt(${rem})`;
+                    break;
+                }
+            }
+            const answer = `sqrt(${product})`;
+            const accept = simplified
+                ? [simplified, `${simplified.replace('sqrt', ' sqrt')}`, `${simplified.replace('sqrt', 'xsqrt')}`]
+                : [];
             return {
                 type: 'Surds',
                 text: `Simplify ${sqrt(a)} ${op('&times;')} ${sqrt(b)}`,
-                answer: `sqrt(${product})`
+                answer: simplified || answer,
+                accept: simplified ? [answer, ...accept] : [answer]
             };
         },
         function rationaliseDenominator() {
@@ -511,16 +532,24 @@ const generators = {
             const g = gcd(a, d);
             const numCoeff = a / g;
             const den = d / g;
-            let answer;
+            let answer, accept = [];
             if (den === 1) {
                 answer = numCoeff === 1 ? `sqrt(${d})` : `${numCoeff}sqrt(${d})`;
+                if (numCoeff > 1) accept.push(`${numCoeff} sqrt(${d})`, `${numCoeff}xsqrt(${d})`);
             } else {
                 answer = numCoeff === 1 ? `sqrt(${d})/${den}` : `${numCoeff}sqrt(${d})/${den}`;
+                // Accept fraction form too
+                if (numCoeff === 1) {
+                    accept.push(`sqrt(${d})/${den}`);
+                } else {
+                    accept.push(`${numCoeff} sqrt(${d})/${den}`, `${numCoeff}xsqrt(${d})/${den}`);
+                }
             }
             return {
                 type: 'Surds',
                 text: `Rationalise the denominator: ${frac(a, `&radic;<span style="text-decoration:overline">${d}</span>`)}`,
-                answer: answer
+                answer: answer,
+                accept: accept
             };
         }
     ],

@@ -1,0 +1,573 @@
+/* ==============================
+   Lesson Viewer Styles
+   ============================== */
+
+/* Override container for lessons */
+.container {
+    max-width: 720px;
+}
+
+/* Progress bar - thin bar at top */
+.lesson-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--border);
+    z-index: 100;
+}
+
+.lesson-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00e5c7, #54a0ff);
+    width: 0%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 0 2px 2px 0;
+}
+
+/* Header */
+.lesson-header {
+    padding: 40px 0 24px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: #00e5c7;
+}
+
+.screen-counter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+}
+
+.lesson-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #00e5c7, #54a0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+}
+
+.lesson-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* Content area */
+.lesson-content {
+    max-width: 720px;
+    padding-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.1s forwards;
+    min-height: 200px;
+}
+
+.lesson-content h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #00e5c7;
+    margin: 24px 0 12px;
+}
+
+.lesson-content h3:first-child {
+    margin-top: 0;
+}
+
+.lesson-content p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.lesson-content ul,
+.lesson-content ol {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    padding-left: 24px;
+}
+
+.lesson-content li {
+    margin-bottom: 6px;
+}
+
+.lesson-content code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9em;
+    background: rgba(0, 229, 199, 0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #00e5c7;
+}
+
+/* Highlighted box */
+.lesson-box {
+    background: rgba(0, 229, 199, 0.05);
+    border: 1px solid rgba(0, 229, 199, 0.15);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    margin: 20px 0;
+}
+
+.lesson-box p:last-child {
+    margin-bottom: 0;
+}
+
+.lesson-box.warning {
+    background: rgba(255, 159, 67, 0.05);
+    border-color: rgba(255, 159, 67, 0.2);
+}
+
+.lesson-box.warning h3 {
+    color: #ff9f43;
+}
+
+/* Example steps - hidden by default, revealed on click */
+.lesson-step {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.4s ease,
+                margin 0.4s ease;
+    margin: 0;
+    padding: 0 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+}
+
+.lesson-step.revealed {
+    max-height: 500px;
+    opacity: 1;
+    margin: 12px 0;
+    padding: 16px 24px;
+}
+
+.lesson-step p {
+    font-size: 1rem;
+}
+
+.lesson-step .step-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #00e5c7;
+    margin-bottom: 6px;
+}
+
+/* Reveal button */
+.reveal-btn {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 10px 24px;
+    background: transparent;
+    border: 1px solid #00e5c7;
+    border-radius: 100px;
+    color: #00e5c7;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 16px 0;
+    display: inline-block;
+}
+
+.reveal-btn:hover {
+    background: rgba(0, 229, 199, 0.1);
+    transform: translateY(-1px);
+}
+
+.reveal-btn:disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Navigation buttons */
+.lesson-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 0 60px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.2s forwards;
+}
+
+.btn-prev,
+.btn-next {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-prev {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+}
+
+.btn-prev:hover:not(:disabled) {
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+    background: var(--bg-card);
+}
+
+.btn-prev:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.btn-next {
+    background: #00e5c7;
+    border: none;
+    color: #0a0a0f;
+}
+
+.btn-next:hover:not(:disabled) {
+    background: #00ccb0;
+    transform: translateY(-1px);
+}
+
+.btn-next:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn-next:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-next.complete-btn {
+    background: linear-gradient(135deg, #00e5c7, #54a0ff);
+}
+
+/* Practice - MC options */
+.option-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    padding: 14px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 8px;
+}
+
+.option-btn:hover:not(.correct):not(.incorrect):not(:disabled) {
+    border-color: var(--border-hover);
+    background: var(--bg-card-hover);
+}
+
+.option-btn.correct {
+    border-color: #00e5c7;
+    background: rgba(0, 229, 199, 0.1);
+    color: #00e5c7;
+}
+
+.option-btn.incorrect {
+    border-color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.08);
+    color: #ff6b6b;
+}
+
+.option-btn:disabled {
+    cursor: default;
+}
+
+/* Practice - feedback */
+.feedback {
+    margin-top: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: none;
+    align-items: center;
+    gap: 8px;
+    line-height: 1.6;
+}
+
+.feedback.show {
+    display: flex;
+}
+
+.feedback.correct {
+    color: #00e5c7;
+}
+
+.feedback.incorrect {
+    color: #ff6b6b;
+}
+
+/* Practice - question prompt */
+.question-prompt {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+/* Practice - free input area */
+.input-area {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.input-area math-field {
+    flex: 1;
+    font-size: 1.3rem;
+    padding: 10px 16px;
+    background: var(--bg-surface) !important;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary) !important;
+    outline: none;
+    transition: border-color 0.2s ease;
+    --hue: 170;
+    --caret-color: #00e5c7;
+    --selection-background-color: rgba(0, 229, 199, 0.18);
+    --placeholder-color: var(--text-muted);
+    --text-font-family: 'JetBrains Mono', monospace;
+    --keyboard-zindex: 1001;
+    --contains-highlight-background-color: transparent;
+}
+
+.input-area math-field:focus-within {
+    border-color: #00e5c7;
+    box-shadow: 0 0 0 3px rgba(0, 229, 199, 0.1);
+}
+
+.input-area .check-btn {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 12px 28px;
+    background: #00e5c7;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: #0a0a0f;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.input-area .check-btn:hover {
+    background: #00ccb0;
+    transform: translateY(-1px);
+}
+
+/* Try another button */
+.try-another-btn {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 8px 20px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 12px;
+    display: none;
+}
+
+.try-another-btn.show {
+    display: inline-block;
+}
+
+.try-another-btn:hover {
+    border-color: #00e5c7;
+    color: #00e5c7;
+}
+
+/* Practice score */
+.practice-score {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.practice-score .score-val {
+    color: #00e5c7;
+}
+
+/* Summary / completion */
+.lesson-complete {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.lesson-complete .check-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.lesson-complete h3 {
+    color: #00e5c7;
+    margin-bottom: 8px;
+}
+
+.lesson-complete p {
+    color: var(--text-secondary);
+}
+
+.lesson-complete .final-score {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #00e5c7;
+    margin: 16px 0;
+}
+
+.summary-points {
+    list-style: none;
+    padding: 0;
+}
+
+.summary-points li {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    padding: 6px 0 6px 20px;
+    position: relative;
+}
+
+.summary-points li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00e5c7;
+}
+
+/* Example problem statement */
+.example-problem {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    padding: 16px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid #00e5c7;
+}
+
+/* KaTeX overrides for dark theme */
+.katex {
+    font-size: 1.1em;
+}
+
+.katex .base {
+    color: var(--text-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .lesson-title {
+        font-size: 1.6rem;
+    }
+
+    .lesson-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .lesson-content p {
+        font-size: 1rem;
+    }
+
+    .lesson-header {
+        padding: 30px 0 16px;
+    }
+
+    .input-area {
+        flex-direction: column;
+    }
+
+    .lesson-nav {
+        padding: 20px 0 40px;
+    }
+
+    .btn-prev,
+    .btn-next {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+
+    .option-btn {
+        font-size: 0.95rem;
+        padding: 12px 16px;
+    }
+
+    .lesson-step.revealed {
+        padding: 12px 16px;
+    }
+
+    .example-problem {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .lesson-title {
+        font-size: 1.35rem;
+    }
+
+    .lesson-content p {
+        font-size: 0.95rem;
+    }
+
+    .question-prompt {
+        font-size: 1rem;
+    }
+}
