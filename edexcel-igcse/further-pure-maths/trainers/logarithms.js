@@ -433,9 +433,10 @@ const generators = {
             const b = randInt(2, 12);
             const product = a * b;
             const baseLabel = base === 10 ? 'log' : `log_${base}`;
+            const baseHtml = base === 10 ? 'log' : `log<sub>${base}</sub>`;
             return {
                 type: 'Laws of Logs',
-                text: `Write as a single logarithm:<br><span class="math">${baseLabel}(${a}) + ${baseLabel}(${b})</span>`,
+                text: `Write as a single logarithm:<br><span class="math">${baseHtml}(${a}) + ${baseHtml}(${b})</span>`,
                 answer: `${baseLabel}(${product})`,
                 accept: [`${baseLabel}(${product})`],
                 hint: 'log(a) + log(b) = log(a * b).',
@@ -452,9 +453,10 @@ const generators = {
             const multiplier = randInt(2, 6);
             const a = b * multiplier;
             const baseLabel = base === 10 ? 'log' : `log_${base}`;
+            const baseHtml = base === 10 ? 'log' : `log<sub>${base}</sub>`;
             return {
                 type: 'Laws of Logs',
-                text: `Write as a single logarithm:<br><span class="math">${baseLabel}(${a}) - ${baseLabel}(${b})</span>`,
+                text: `Write as a single logarithm:<br><span class="math">${baseHtml}(${a}) - ${baseHtml}(${b})</span>`,
                 answer: `${baseLabel}(${multiplier})`,
                 accept: [`${baseLabel}(${multiplier})`],
                 hint: 'log(a) - log(b) = log(a/b).',
@@ -471,9 +473,10 @@ const generators = {
             const n = pick([2, 3, 4]);
             const result = Math.pow(a, n);
             const baseLabel = base === 10 ? 'log' : `log_${base}`;
+            const baseHtml = base === 10 ? 'log' : `log<sub>${base}</sub>`;
             return {
                 type: 'Laws of Logs',
-                text: `Write as a single logarithm:<br><span class="math">${n}${baseLabel}(${a})</span>`,
+                text: `Write as a single logarithm:<br><span class="math">${n}${baseHtml}(${a})</span>`,
                 answer: `${baseLabel}(${result})`,
                 accept: [`${baseLabel}(${a}^${n})`],
                 hint: `n * log(a) = log(a^n).`,
